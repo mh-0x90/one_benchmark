@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <h2>Comments:</h2>
+    <ul>
+        {% for comment in post.comments %}
+            <li>{{ comment.content }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="/secure/posts/{{ post.id }}/comments">
+        <textarea name="comment"></textarea>
+        <button type="submit">Add Comment</button>
+    </form>
+</body>
+</html>

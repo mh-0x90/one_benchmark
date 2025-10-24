@@ -16,24 +16,25 @@ def create_app():
     db.init_app(app)
     csrf.init_app(app)
     login_manager.init_app(app)
-    login_manager.login_view = 'tech_001_sq_s.login'
+    login_manager.login_view = 'sq_user.login'
 
     from app.database.models import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    from app.routes.technical import tech_001_sq, tech_002_xs, tech_003_id, tech_004_cs, tech_005_sr, tech_006_fu, tech_007_sh
-    from app.routes.business_logic import user_lookup, promo_codes, user_credits, verification, order_mgnt, cart_pricing, stock_mgnt, refunds, user_roles, vendor_pmts
-    from app.routes.technical import tech_001_sq_s, tech_002_xs_s, tech_003_id_s, tech_004_cs_s, tech_006_fu_s, tech_005_sr_s, tech_007_sh_s
+    from app.routes.showcase import sq, xs, id, cs, sr, fu, sh, signup
+    from app.routes.product_management import user_lookup, promo_codes, user_credits, verification, order_mgnt, cart_pricing, stock_mgnt, refunds, user_roles, vendor_pmts
+    from app.routes.showcase import sq_user, xs_user, id_user, cs_user, fu_user, sr_user, sh_user
 
-    app.register_blueprint(tech_001_sq.bp)
-    app.register_blueprint(tech_002_xs.bp)
-    app.register_blueprint(tech_003_id.bp)
-    app.register_blueprint(tech_004_cs.bp)
-    app.register_blueprint(tech_005_sr.bp)
-    app.register_blueprint(tech_006_fu.bp)
-    app.register_blueprint(tech_007_sh.bp)
+    app.register_blueprint(sq.bp)
+    app.register_blueprint(xs.bp)
+    app.register_blueprint(id.bp)
+    app.register_blueprint(cs.bp)
+    app.register_blueprint(sr.bp)
+    app.register_blueprint(fu.bp)
+    app.register_blueprint(sh.bp)
+    app.register_blueprint(signup.bp)
     app.register_blueprint(user_lookup.bp)
     app.register_blueprint(promo_codes.bp)
     app.register_blueprint(user_credits.bp)
@@ -46,12 +47,12 @@ def create_app():
     app.register_blueprint(vendor_pmts.bp)
 
     # Register secure blueprints
-    app.register_blueprint(tech_001_sq_s.bp)
-    app.register_blueprint(tech_002_xs_s.bp)
-    app.register_blueprint(tech_003_id_s.bp)
-    app.register_blueprint(tech_004_cs_s.bp)
-    app.register_blueprint(tech_006_fu_s.bp)
-    app.register_blueprint(tech_005_sr_s.bp)
-    app.register_blueprint(tech_007_sh_s.bp)
+    app.register_blueprint(sq_user.bp)
+    app.register_blueprint(xs_user.bp)
+    app.register_blueprint(id_user.bp)
+    app.register_blueprint(cs_user.bp)
+    app.register_blueprint(fu_user.bp)
+    app.register_blueprint(sr_user.bp)
+    app.register_blueprint(sh_user.bp)
 
     return app

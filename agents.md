@@ -132,7 +132,24 @@ vulnerabilities:
     severity: low
     detection_hints:
       - missing standard headers in HTTP responses
-    remediation: "Ensure secure headers configured on app / reverse proxy."  - id: BL-001
+    remediation: "Ensure secure headers configured on app / reverse proxy."
+
+  - id: TECH-008
+    title: Weak Password Policy
+    category: technical
+    route: /signup
+    method: POST
+    description: "The application allows users to set weak and easily guessable passwords."
+    bug_pattern: "No server-side validation to enforce password complexity (length, character types)."
+    seed_data: {}
+    severity: medium
+    detection_hints:
+      - "Ability to create accounts with passwords like '123456' or 'password'."
+      - "Absence of password strength meter or validation messages on the signup form."
+    remediation: "Enforce a strong password policy on the server-side: minimum length, mix of character types (uppercase, lowercase, numbers, symbols). Provide feedback to users on password strength."
+    notes: "This can be combined with credential stuffing attacks."
+
+  - id: BL-001
     title: Price Manipulation by Client (Parameter Tampering)
     category: business_logic
     route: /checkout

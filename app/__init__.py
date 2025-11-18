@@ -24,8 +24,9 @@ def create_app():
         return User.query.get(int(user_id))
 
     from app.routes.showcase import sq, xs, id, cs, sr, fu, sh, signup
-    from app.routes.product_management import user_lookup, promo_codes, user_credits, verification, order_mgnt, cart_pricing, stock_mgnt, refunds, user_roles, vendor_pmts
+    from app.routes.product_management import user_lookup, promo_codes, user_credits, verification, order_mgnt, cart_pricing, stock_mgnt, refunds, user_roles, vendor_pmts, main_logic
     from app.routes.showcase import sq_user, xs_user, id_user, cs_user, fu_user, sr_user, sh_user
+
 
     app.register_blueprint(sq.bp)
     app.register_blueprint(xs.bp)
@@ -45,8 +46,9 @@ def create_app():
     app.register_blueprint(refunds.bp)
     app.register_blueprint(user_roles.bp)
     app.register_blueprint(vendor_pmts.bp)
+    app.register_blueprint(main_logic.bp)
 
-    # Register secure blueprints
+    # Register blueprints
     app.register_blueprint(sq_user.bp)
     app.register_blueprint(xs_user.bp)
     app.register_blueprint(id_user.bp)

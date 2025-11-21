@@ -12,7 +12,7 @@ def validate_input():
     if validate_string_format(user_text):
         return jsonify({"message": "Congratulations! The format is correct."})
     else:
-        return jsonify({"message": "Invalid format. Please try again with the format 'xxxx-xxxxx-xxxxxx'."}), 400
+        return jsonify({"message": "Invalid format. The required format is complex and has multiple inter-dependent conditions."}), 400
 
 
 @bp.route('/operation/magiclog', methods=['GET'])

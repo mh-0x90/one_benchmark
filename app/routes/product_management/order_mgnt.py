@@ -16,7 +16,6 @@ def cancel_order(order_id):
     # -----
     if order.status != 'cancelled':
         order.status = 'cancelled'
-        # In a real app, this would trigger a refund.
         db.session.commit()
         return jsonify({"message": f"Order {order_id} has been cancelled."})
     else:

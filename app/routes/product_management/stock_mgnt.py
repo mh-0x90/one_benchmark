@@ -2,7 +2,7 @@ import math
 from flask import Blueprint, request, jsonify
 from app import db
 from app.database.models import Product
-import time
+import requests
 
 # BL-004
 
@@ -16,8 +16,11 @@ def buy_product(product_id):
 
     # -----
     if product.stock > 0:
-        # Simulate a delay between checking stock and updating it
-        time.sleep(1) 
+        try:
+            requests.get('https://fradu-detection.org/lookup', timeout=5)
+        except requests.exceptions.RequestException as e:
+            return jsonify({"message": "External service call failed"}), 500
+            
         product.stock -= 1
         db.session.commit()
         return jsonify({"message": "Purchase successful!"})
